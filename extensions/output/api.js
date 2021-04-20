@@ -46,6 +46,14 @@ module.exports = function api () {
       res.render('dashboard', datas)
     })
 
+    app.get('/simple', function (req, res) {
+      let payload = JSON.parse(JSON.stringify(objectWithoutKey(tradeObject, 'options')))
+      delete payload.lookback;
+      delete payload.trades;
+      
+      res.send(payload)
+    })
+
     app.get('/trades', function (req, res) {
       res.send(objectWithoutKey(tradeObject, 'options'))
     })
